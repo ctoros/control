@@ -37,6 +37,22 @@ class Producto {
             }
         }
     }
+    
+    
+    function listProduc() {
+        $db = new DataBase();
+        $conn = $db->connect();
+        if ($conn) {
+            $sql = "SELECT id,nombre,codigo,valor FROM produto";
+            if ($conn->query($sql)) {
+
+                $rs = $conn->query($sql);
+             // print_r(mysqli_fetch_assoc($rs));
+
+                return mysqli_fetch_all($rs);
+            }
+        }
+    }
 
     function toJSON() {
         $arr = array(
