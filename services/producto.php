@@ -37,9 +37,10 @@ class Producto {
             }
         }
     }
-    
-    
+
     function listProduc() {
+        $filas = [];
+
         $db = new DataBase();
         $conn = $db->connect();
         if ($conn) {
@@ -47,9 +48,14 @@ class Producto {
             if ($conn->query($sql)) {
 
                 $rs = $conn->query($sql);
-             // print_r(mysqli_fetch_assoc($rs));
+                // print_r(mysqli_fetch_assoc($rs));
+                while ($fila = mysqli_fetch_assoc($rs)) {
+//                 print_r($fila);
+                    array_push($filas, $fila);
+                }
+                return $filas;
 
-                return mysqli_fetch_all($rs);
+//                return mysqli_fetch_all($rs);
             }
         }
     }
@@ -58,7 +64,7 @@ class Producto {
         $arr = array(
             'id' => "",
             'nombre' => $this->nombre,
-            'codigo' => $this->codigo, 
+            'codigo' => $this->codigo,
             'valor' => $this->valor,
         );
         return json_encode($arr);
