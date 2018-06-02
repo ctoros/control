@@ -1,11 +1,14 @@
 <?php
 
 include("producto.php");
+//echo $_POST[""];
 
+$idproducto = 2;
+//$idproducto = $_POST["id"]; 
 $product = new Producto();
 $productss = Array();
 $arrayProduct = Array();
-$productss = $product->listProduc();
+$productss = $product->traerProductoId($idproducto);
 //$resp = [];
 //foreach($productss as $p) {
 //	$arrayProduct = $p->toArray();
